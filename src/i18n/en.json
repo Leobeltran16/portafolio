@@ -1,0 +1,199 @@
+{
+  "lang": { "es": "Spanish", "en": "English" },
+
+  "nav": {
+    "home": "Home",
+    "about": "About me",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+
+  "hero": { "title": "Leonardo Beltrán", "subtitle": "Full-Stack Developer" },
+
+  "projects": {
+    "heading": "Some projects",
+    "view": "View project",
+    "repoCode": "Code on GitHub"
+  },
+
+  "skills": {
+    "heading": "Skills & Tools",
+    "level": "Level:",
+    "experience": "Experience:",
+    "lastUsed": "Last used:",
+    "relatedStack": "Related stack:",
+
+    "items": {
+      "html": {
+        "name": "HTML5",
+        "category": "Frontend",
+        "desc": "Semantic structure, basic accessibility, forms and SEO optimization.",
+        "levelLabel": "Advanced",
+        "experienceValue": "2 years",
+        "lastUsedValue": "2025",
+        "uses": {
+          "0": "Semantics",
+          "1": "Forms",
+          "2": "SEO"
+        },
+        "project": { "text": "Full-stack E-commerce" },
+        "stack": { "0": "CSS", "1": "React", "2": "SEO" }
+      },
+
+      "css": {
+        "name": "CSS3",
+        "category": "Frontend",
+        "desc": "Responsive design, animations, Flexbox, Grid and advanced customization.",
+        "levelLabel": "Advanced",
+        "experienceValue": "2 years",
+        "lastUsedValue": "2025",
+        "uses": {
+          "0": "Responsive Design",
+          "1": "Animations",
+          "2": "Grid & Flexbox"
+        },
+        "project": { "text": "Personal Portfolio" },
+        "stack": { "0": "HTML5", "1": "React", "2": "Vite" }
+      },
+
+      "js": {
+        "name": "JavaScript",
+        "category": "Frontend",
+        "desc": "Dynamic programming with ES6+, async patterns, REST APIs and DOM manipulation.",
+        "levelLabel": "Intermediate",
+        "experienceValue": "1.5 years",
+        "lastUsedValue": "2025",
+        "uses": {
+          "0": "REST APIs",
+          "1": "Async/Await",
+          "2": "Dynamic DOM"
+        },
+        "project": { "text": "Store API" },
+        "stack": { "0": "React", "1": "Node.js", "2": "Express" }
+      },
+
+      "react": {
+        "name": "React",
+        "category": "Frontend",
+        "desc": "Building dynamic UIs, SPA, custom hooks and Context API.",
+        "levelLabel": "Intermediate",
+        "experienceValue": "1.5 years",
+        "lastUsedValue": "2025",
+        "uses": {
+          "0": "Hooks",
+          "1": "SPA",
+          "2": "Routing"
+        },
+        "project": { "text": "Full-stack E-commerce" },
+        "stack": { "0": "JavaScript", "1": "Vite", "2": "CSS" }
+      },
+
+      "node": {
+        "name": "Node.js",
+        "category": "Backend",
+        "desc": "Secure REST APIs, custom middlewares and JWT handling.",
+        "levelLabel": "Intermediate",
+        "experienceValue": "1 year",
+        "lastUsedValue": "2025",
+        "uses": {
+          "0": "REST APIs",
+          "1": "JWT",
+          "2": "Middlewares"
+        },
+        "project": { "text": "E-commerce Backend" },
+        "stack": { "0": "Express", "1": "MongoDB", "2": "Mongoose" }
+      },
+
+      "express": {
+        "name": "Express",
+        "category": "Backend",
+        "desc": "Framework for scalable APIs with controllers, middlewares and basic security.",
+        "levelLabel": "Intermediate",
+        "experienceValue": "1 year",
+        "lastUsedValue": "2025",
+        "uses": {
+          "0": "REST routes",
+          "1": "Middlewares",
+          "2": "Validations"
+        },
+        "project": { "text": "Users API" },
+        "stack": { "0": "Node.js", "1": "MongoDB", "2": "JWT" }
+      },
+
+      "mongo": {
+        "name": "MongoDB",
+        "category": "Database",
+        "desc": "Data modeling with Mongoose, optimized queries, indexes and populates.",
+        "levelLabel": "Intermediate",
+        "experienceValue": "1 year",
+        "lastUsedValue": "2025",
+        "uses": {
+          "0": "NoSQL Databases",
+          "1": "Mongoose",
+          "2": "Query optimization"
+        },
+        "project": { "text": "E-commerce DB" },
+        "stack": { "0": "Node.js", "1": "Express", "2": "JWT" }
+      },
+
+      "git": {
+        "name": "Git & GitHub",
+        "category": "Tools",
+        "desc": "Version control, branching, pull requests, conflict handling and continuous delivery.",
+        "levelLabel": "Intermediate",
+        "experienceValue": "1.5 years",
+        "lastUsedValue": "2025",
+        "uses": {
+          "0": "Versioning",
+          "1": "Pull Requests",
+          "2": "Deploy"
+        },
+        "project": { "text": "Personal Portfolio" },
+        "stack": { "0": "GitHub", "1": "Vercel", "2": "Render" }
+      },
+
+      "vercel": {
+        "name": "Vercel",
+        "category": "Deploy",
+        "desc": "Frontend deployment platform with CI/CD integration and dynamic environments.",
+        "levelLabel": "Intermediate",
+        "experienceValue": "1 year",
+        "lastUsedValue": "2025",
+        "uses": {
+          "0": "Frontend deploy",
+          "1": "CI/CD",
+          "2": "Environment variables"
+        },
+        "project": { "text": "Portfolio" },
+        "stack": { "0": "React", "1": "GitHub", "2": "Next.js" }
+      },
+
+      "render": {
+        "name": "Render",
+        "category": "Deploy",
+        "desc": "Deploy Node.js APIs and MongoDB Atlas with automatic SSL certificates.",
+        "levelLabel": "Intermediate",
+        "experienceValue": "1 year",
+        "lastUsedValue": "2025",
+        "uses": {
+          "0": "Backend deploy",
+          "1": "Environments",
+          "2": "REST APIs"
+        },
+        "project": { "text": "E-commerce API" },
+        "stack": { "0": "Node.js", "1": "Express", "2": "MongoDB" }
+      }
+    }
+  },
+
+  "contact": {
+    "title": "Contact",
+    "hint": "Click the email to open your mail client automatically.",
+    "emailCta": "Send me an email"
+  },
+
+  "about": { "title": "About me" },
+
+  "footer": { "copy": "Leonardo Beltrán - {{year}}" }
+}

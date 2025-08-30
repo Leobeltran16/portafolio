@@ -1,24 +1,791 @@
+/* ==================== VARIABLES GLOBALES ==================== */
+:root {
+  --menu-bg: rgba(0, 0, 0, 0.5);
+  --menu-border: 0.1rem solid rgba(86, 86, 86, 0.5);
+  --menu-link: #ffffff;
+  --menu-link-hover: #c90c0f;
+  --color-acento: #c90c0f;
+  --nav-h: 50px;
+}
+
+/* ==================== NAV (MENÚ PRINCIPAL) ==================== */
+.nav-scope {
+  position: fixed;          /* La deja fija en la parte superior */
+  top: 0;                   /* Pegada al borde superior */
+  left: 0;
+  width: 100%;              /* Ocupar todo el ancho */
+  z-index: 1000;            /* Asegura que quede por encima del resto */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Sombra para dar relieve */
+}
+
+/* IMPORTANTES CAMBIOS:
+   - quitamos margin-top para evitar salto
+   - quitamos position: sticky (ya es fixed el header)
+   - añadimos min-height y padding horizontal
+*/
+
+.nav-scope .menu {
+  margin: 0;
+  padding: 0.5rem;
+  background: var(--menu-bg);
+  border-top: var(--menu-border);
+  border-bottom: var(--menu-border);
+  display: grid;
+  grid-template-columns: 10% auto 10%;
+  align-items: center;
+  min-height: var(--nav-h); /*ALTURA QUE SE VE AFECTADA CON   --nav-h: 50px;*/
+  backdrop-filter: blur(6px); /* opcional, moderno, fondo borroso */
+}
+
+/* Foto de perfil (opcional) */
+.nav-scope .menu .foto {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.nav-scope .menu .foto img {
+  width: 2.5rem;
+  border-radius: 50%;
+  margin-right: 1.25rem;
+}
+
+/* Links */
+.nav-scope .menu .contenedor-menu {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0;
+}
+.nav-scope .menu .contenedor-menu a {
+  text-align: center;
+  text-decoration: none;
+  color: var(--menu-link);
+  font-size: 0.9rem;
+  line-height: 1rem;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+.nav-scope .menu .contenedor-menu a:hover {
+  color: var(--menu-link-hover);
+}
+
+/* Idiomas */
+.nav-scope .menu .idiomas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1.5625rem, 1fr));
+  align-items: center;
+  text-align: center;
+}
+.nav-scope .menu .idiomas img {
+  width: 1.5rem;
+  cursor: pointer;
+}
+.nav-scope .menu .idiomas img.active {
+  opacity: 0.5;
+}
+.nav-scope .menu .idiomas img:hover {
+  opacity: 0.5;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+/* Mobile */
+@media (max-width: 767px) {
+  .nav-scope .menu {
+    grid-template-columns: 100%;
+    text-align: center;
+    padding-bottom: 1rem;
+  }
+
+  .nav-scope .menu .contenedor-menu {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .nav-scope .menu .foto {
+    display: none; /* Ocultamos la foto para ganar espacio */
+  }
+
+  .nav-scope .menu .idiomas {
+    margin-top: 0.5rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 48rem) {
+  .nav-scope .menu .contenedor-menu a {
+    font-size: 1.1rem;
+  }
+}
+
+/* ==================== SECCIONES GENERALES ==================== */
 .seccion {
   padding: 2rem 1rem;
   max-width: 1000px;
   margin: 0 auto;
 }
 
-.navbar {
-  background-color: #222;
-  color: white;
+
+/* ==================== ESTILOS BASE ==================== */
+body {
+  font-family: "Oswald", sans-serif;
+  background: url("/assets/prism1.png") repeat;
+  background-attachment: fixed;
+  color: #ffffff;
+}
+
+
+/*estilo html */
+/* Hace que TODAS las anclas de la página dejen espacio para la navbar */
+html {
+  scroll-behavior: smooth;                  /* scroll suave */
+  scroll-padding-top: calc(var(--nav-h) + 12px); /* offset global para anclas */
+}
+
+/*=====================heros estilo ====================*/
+
+/* ===== HERO ===== */
+.hero {
+  /* Ocupa buen alto de pantalla sin tapar la navbar */
+  min-height: 30vh;          /* antes 60vh */
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1.rem 1rem 0.60rem;  /* antes 2rem 1rem */
+  position: relative;
+}
+
+
+/* Oscurecer sutil sobre el patrón para que el texto resalte */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-inner { position: relative; z-index: 1; }
+
+/* Título grande con contorno y sombra */
+.hero-title {
+  margin: 0 0 .5rem 0;
+  font-weight: 900;
+  letter-spacing: .03em;
+  line-height: 1.05;
+  /* Tamaño fluido: ajusta a tu gusto */
+  font-size: clamp(2.2rem, 6vw + .8rem, 5rem);
+  color: #fff;
+
+  /* Contorno & sombra estilo “cartel” */
+  text-shadow:
+    0 0 0 #000,           /* base */
+    2px 2px 0 #000,
+    -2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000,
+    0 6px 14px rgba(0,0,0,.6);
+}
+
+/* Subtítulo manuscrito con borde claro */
+.hero-subtitle {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+  font-size: clamp(1.2rem, 3vw + .4rem, 2.4rem);
+  color: #ffffff;
+
+  /* Borde claro + sombra suave para ese efecto “trazo” */
+  text-shadow:
+    -1px -1px 0 #111,
+     1px -1px 0 #111,
+    -1px  1px 0 #111,
+     1px  1px 0 #111,
+     0    10px 18px rgba(0,0,0,.45);
+}
+
+/* Opcional: animación de entrada suave */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-title, .hero-subtitle { animation: fadeUp .6s ease both; }
+.hero-subtitle { animation-delay: .08s; }
+
+/* Responsive: un poco más de altura en pantallas grandes */
+@media (min-width: 992px) {
+  .hero { min-height: 68vh; }
+}
+
+
+.hero-title {
+  font-family: "Rock Salt", cursive;
+  margin: 0 0 .5rem 0;
+  font-weight: 900;
+  letter-spacing: .03em;
+  line-height: 1.05;
+  font-size: clamp(2.2rem, 6vw + .8rem, 5rem);
+  color: #fff;
+  text-shadow:
+    0 0 0 #000,
+    2px 2px 0 #000,
+    -2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000,
+    0 6px 14px rgba(0,0,0,.6);
+}
+
+.hero-subtitle {
+  font-family: "Caveat", cursive;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+  font-size: clamp(1.2rem, 3vw + .4rem, 2.4rem);
+  color: #ffffff;
+  text-shadow:
+    -1px -1px 0 #111,
+     1px -1px 0 #111,
+    -1px  1px 0 #111,
+     1px  1px 0 #111,
+     0    10px 18px rgba(0,0,0,.45);
+}
+
+/* ======= SECCIÓN SOBRE MÍ ======= */
+.sobre-mi {
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Fira Code', monospace; /* Fuente estilo terminal */
+}
+
+.contenedor-sobre-mi {
+  background: #0f0f0f;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.titulo {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.texto {
+  color: #ccc;
+  line-height: 1.6;
+}
+
+/* Estilo ruta tipo terminal */
+.direccion {
+  margin-bottom: 1rem;
+  color: #ff4d4d;
+  font-weight: bold;
+}
+
+.dir {
+  color: #ff4d4d;
+}
+
+/* Estilo prompt */
+.descripcion {
+  background-color: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 8px;
+  color: #e0e0e0;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.descripcion .simbolo {
+  color: #33ff33;
+  font-weight: bold;
+  margin-right: 6px;
+}
+
+/* Palabras destacadas */
+.resaltar {
+  color: #7aa2ff;
+  font-weight: bold;
+}
+
+/* ===== PROYECTOS ===== */
+.proyectos-seccion .titulo.centrado { text-align: center; margin-bottom: 1.5rem; }
+
+.grid-proyectos {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  margin-top: 1rem;
+}
+
+@media (min-width: 620px) {
+  .grid-proyectos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 980px) {
+  .grid-proyectos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+.card-proyecto {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid rgba(255,255,255,.08);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card-proyecto:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.45);
+}
+
+.card-link { display: block; position: relative; }
+
+.card-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  filter: brightness(.9);
+  transition: transform .4s ease, filter .3s ease;
+}
+.card-proyecto:hover .card-img {
+  transform: scale(1.04);
+  filter: brightness(1);
+}
+
+.card-overlay {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  text-align: center;
   padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,.65), rgba(0,0,0,.25));
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+.card-proyecto:hover .card-overlay { opacity: 1; }
+
+.card-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,.6);
+}
+
+.card-tags {
+  margin-top: .25rem;
+  color: #cfd8ff;
+  font-size: .9rem;
+  opacity: .95;
+}
+
+.card-cta {
+  display: inline-block;
+  margin-top: .5rem;
+  font-weight: 700;
+  font-size: .9rem;
+  padding: .4rem .75rem;
+  border-radius: 8px;
+  background: var(--color-acento);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0,0,0,.35);
+}
+
+.card-repo {
+  display: inline-block;
+  margin-top: .5rem;
+  font-size: .85rem;
+  color: #7aa2ff;
+  text-decoration: none;
+}
+.card-repo:hover { text-decoration: underline; }
+
+
+/* ===== HABILIDADES ===== */
+.habilidades-seccion .titulo.centrado { text-align: center; margin-bottom: 1.5rem; }
+
+.grid-habilidades {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 768px) {
+  .grid-habilidades { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 1100px) {
+  .grid-habilidades { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+
+.skill-card {
+  background: #111;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.skill-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.45);
+}
+
+.skill-media { position: relative; }
+.skill-img {
+  width: 100%; height: 180px; object-fit: contain;
+  display: block; background: #0b0b0b;
+  padding: 16px;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+}
+
+/* Overlay al hover */
+.skill-overlay {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.0), rgba(0,0,0,.55));
+  opacity: 0; transition: opacity .25s ease;
+  text-align: center; padding: .5rem;
+}
+.skill-overlay h3 { margin: 0; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.5); }
+.skill-overlay p  { margin: .25rem 0 0; color: #cfd8ff; font-size: .9rem; }
+.skill-card:hover .skill-overlay { opacity: 1; }
+
+/* Botón + flotante */
+.skill-plus {
+  position: absolute; right: 12px; bottom: 12px;
+  width: 36px; height: 36px; border-radius: 999px;
+  border: none; cursor: pointer;
+  background: #fff; color: #000; font-weight: 900; font-size: 18px;
+  box-shadow: 0 8px 18px rgba(0,0,0,.35);
+  transition: transform .15s ease;
+}
+.skill-plus:hover { transform: scale(1.06); }
+
+/* ===== Modal ===== */
+.skill-modal {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,.6);
+  display: grid; place-items: center; padding: 1rem;
+}
+.skill-modal-dialog {
+  width: min(520px, 96vw);
+  background: #121212; color: #eee;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px; padding: 1rem 1rem 1.25rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,.6);
+  position: relative;
+}
+.skill-modal-close {
+  position: absolute; top: 8px; right: 10px;
+  width: 36px; height: 36px; border-radius: 999px;
+  border: none; font-size: 24px; line-height: 1;
+  cursor: pointer; background: #1e1e1e; color: #fff;
+}
+.skill-modal-header {
+  display: flex; align-items: center; gap: .75rem; margin-bottom: .5rem;
+}
+.skill-modal-header img { width: 42px; height: 42px; object-fit: contain; }
+.skill-modal-header h3 { margin: 0; }
+.badge {
+  display: inline-block; margin-top: .25rem;
+  font-size: .8rem; color: #cfd8ff; opacity: .9;
+}
+
+/* Descripción */
+.skill-modal-desc { margin: .5rem 0 1rem; color: #ddd; line-height: 1.6; }
+
+/* Barra de progreso */
+.progress {
+  width: 100%; height: 10px; border-radius: 999px;
+  background: rgba(255,255,255,.08); overflow: hidden;
+}
+.progress-bar {
+  height: 100%; background: linear-gradient(90deg, var(--color-acento), #ff7a7a);
+  border-radius: 999px;
+}
+.progress-label {
+  margin-top: .35rem; font-size: .9rem; color: #cfcfcf; text-align: right;
+}
+
+/* Botón docs */
+.btn-docs {
+  display: inline-block; margin-top: .75rem;
+  padding: .5rem .9rem; border-radius: 10px;
+  background: var(--color-acento); color: #fff; text-decoration: none;
+  font-weight: 700; box-shadow: 0 8px 16px rgba(0,0,0,.35);
+}
+.btn-docs:hover { filter: brightness(1.05); }
+
+/*======AJUSTE DE RECUADRO DE HERRAMIENTAS===========*/
+
+
+/* Contenedor del icono: cuadrado, centrado */
+.skill-media {
+  position: relative;
+  display: grid;
+  place-items: center;        /* centra horizontal y vertical */
+  width: 100%;
+  aspect-ratio: 1 / 1;        /* cuadrado; mantiene todas iguales */
+  background: #0b0b0b;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Imagen del icono: tamaño máximo y centrada */
+.skill-img {
+  display: block;
+  max-width: 72%;             /* ajusta si querés más grande/pequeño */
+  max-height: 72%;
+  width: auto;
+  height: auto;
+  object-fit: contain;        /* por si alguna viene como PNG */
+  object-position: center;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.35));
+  margin: 0 auto;
+}
+
+/* Overlay debe cubrir el cuadrado completo */
+.skill-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: .5rem;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.0), rgba(0,0,0,.55));
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+.skill-card:hover .skill-overlay { opacity: 1; }
+
+/* Botón + en la esquina */
+.skill-plus {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: none;
+  background: #fff;
+  color: #000;
+  font-weight: 900;
+  font-size: 18px;
+  box-shadow: 0 8px 18px rgba(0,0,0,.35);
+  cursor: pointer;
+}
+
+
+/*/*/
+
+/* Contenedor de chips */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+/* Estilo base */
+/* Base chips */
+.chips { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+.chip  { padding:6px 14px; border-radius:20px; font-size:.85rem; font-weight:600;
+         color:#fff; box-shadow:0 3px 6px rgba(0,0,0,.3); transition:transform .2s, box-shadow .2s; }
+.chip:hover { transform:translateY(-2px); box-shadow:0 6px 12px rgba(0,0,0,.45); }
+
+/* Colores por categoría (slug) */
+.chip-frontend      { background:#2563eb; }
+.chip-backend       { background:#15803d; }
+.chip-base-de-datos { background:#0891b2; }
+.chip-herramientas  { background:#374151; }
+.chip-deploy        { background:#7c3aed; }
+
+
+/*===========estilo de pie de pagna flooter============*/
+
+/* ====== FOOTER ====== */
+.footer {
+  background: #ffffff;
+  color: #000000;
+  padding: 2rem 0 0 0;
+  position: relative;
+}
+
+/* contenedor reutiliza tu clase .contenedor */
+
+.footer .redes-sociales {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
-.navbar a {
-  color: white;
+.footer .redes-sociales .social {
+  width: 4.375rem;      /* 70px */
+  height: 4.375rem;
+  background: #f1f1f1;
+  margin: 0 0.625rem;   /* 10px */
+  border-radius: 30%;
+  box-shadow: 0 0.3125rem 0.9375rem -0.3125rem #00000070;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+/* Colores de marca */
+.footer .linkedin { color: #0e76a8; }
+.footer .instagram { color: #bc2a8d; }
+.footer .twitter { color: #00acee; }
+.footer .youtube { color: #c4302b; }
+.footer .github { color: #333333; }
+
+/* --- Footer: que el barrido no tape el SVG y el icono cambie en hover --- */
+
+/* Aseguramos capas: el barrido debajo, el icono arriba */
+.footer .redes-sociales .social {
+  position: relative;      /* ya lo tenías; lo dejamos explícito */
+  overflow: hidden;
+}
+
+.footer .redes-sociales .social::before {
+  z-index: 0;              /* el barrido va debajo del icono */
+}
+
+/* Estilo y transición para SVG (en lugar de .social i) */
+.footer .redes-sociales .social svg {
+  position: relative;
+  z-index: 1;              /* icono por encima del barrido */
+  width: 24px;
+  height: 24px;
+  display: block;
+  color: currentColor;     /* toma el color de .linkedin/.instagram/... */
+  fill: currentColor;
+  transform-origin: center;
+  transition: transform .2s linear, color .2s linear;
+}
+
+/* Hover: animación del icono (igual que antes hacías con <i>) */
+.footer .redes-sociales .social:hover svg {
+  transform: scale(1.3);
+  color: #ffffff;          /* el icono se vuelve blanco en hover */
+}
+
+/* (Opcional) Por si algún navegador no re-aplica fill, forzamos los paths */
+.footer .redes-sociales .social:hover svg path {
+  fill: currentColor;
+}
+
+
+.footer .redes-sociales .social::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  transform: rotate(45deg);
+  left: -110%;
+  top: 90%;
+}
+
+.footer .linkedin::before  { background: #0e76a8; }
+.footer .instagram::before { background: #bc2a8d; }
+.footer .youtube::before   { background: #c4302b; }
+.footer .github::before    { background: #333333; }
+
+.footer .redes-sociales .social:hover::before {
+  animation: sweep .7s 1 forwards;
+  top: -10%;
+  left: -10%;
+}
+
+@keyframes sweep {
+  0%   { left: -110%; top: 90%; }
+  50%  { left: 10%;   top: -30%; }
+  100% { left: -10%;  top: -10%; }
+}
+
+/* Franja inferior con nombre/año */
+.footer .autor,
+.footer p.autor {
+  background: #d1d1d1;
+  padding: .5rem 0;
+  text-align: center;
+  font-weight: 700;
+  margin: 0;
+}
+
+.footer .redes-sociales .social {
+  display: grid;
+  place-items: center;
+}
+
+.footer .redes-sociales .social svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+  color: currentColor; /* hereda el color de .linkedin, etc. */
+  fill: currentColor;
+}
+
+
+/* ===== Contacto general ===== */
+.contacto {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(255,255,255,0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(6px);
+}
+
+.contacto h2 {
+  margin-bottom: 1rem;
+}
+
+.contacto__texto {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+/* ===== Tarjeta de email ===== */
+.contacto__email-card {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+
+  padding: .8rem 1.2rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  text-decoration: none;
+
+  font-size: 1rem;
   font-weight: 500;
-  transition: color 0.3s;
+
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  transition: transform .2s ease, box-shadow .3s ease;
 }
 
-.navbar a:hover {
-  color: var(--color-acento);
+.contacto__email-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.45);
+  border-color: rgba(255,255,255,0.25);
 }
+
+.contacto__email-card .icon {
+  flex-shrink: 0;
+  color: #00bcd4;
+}
+
+/* ===== Pista debajo ===== */
+.contacto__hint {
+  margin-top: 1rem;
+  font-size: .9rem;
+  opacity: 0.6;
+}
+
+

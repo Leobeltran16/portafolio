@@ -1,0 +1,10 @@
+{
+  "lang": { "es": "Español", "en": "Inglés" },
+  "nav": { "home": "Inicio", "about": "Sobre mí", "projects": "Proyectos", "skills": "Habilidades", "contact": "Contacto" },
+  "hero": { "title": "Leonardo Beltrán", "subtitle": "Desarrollador Web Full Stack" },
+  "projects": { "heading": "Algunos proyectos realizados", "view": "Ver proyecto", "repoCode": "Código en GitHub" },
+  "skills": { "heading": "Habilidades & Herramientas", "level": "Nivel:", "experience": "Experiencia:", "lastUsed": "Último uso:", "relatedStack": "Stack relacionado:" },
+  "contact": { "title": "Contacto", "hint": "Haz clic en el correo para abrir tu cliente de email automáticamente.", "emailCta": "Envíame un correo" },
+  "about": { "title": "Sobre mí" },  
+  "footer": { "copy": "Leonardo Beltrán - {{year}}" }
+}
