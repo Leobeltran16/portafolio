@@ -341,20 +341,31 @@ html {
   box-shadow: 0 10px 28px rgba(0,0,0,.45);
 }
 
-.card-link { display: block; position: relative; }
+/* Para centrar contenido y evitar estiramientos */
+.card-link { 
+  display: grid; 
+  place-items: center; 
+  position: relative; 
+}
 
+/* ---------- FIX NITIDEZ DE IMÁGENES EN TARJETAS ---------- */
 .card-img {
   display: block;
   width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  filter: brightness(.9);
-  transition: transform .4s ease, filter .3s ease;
+  aspect-ratio: 1 / 1;          /* cuadrado: coincide con tus iconos PNG */
+  object-fit: contain;          /* no recorta ni deforma */
+  padding: 8px;                 /* aire alrededor del icono */
+  background: radial-gradient(120% 120% at 50% 60%,
+              rgba(255,255,255,.04) 0%, rgba(0,0,0,.0) 60%), #0b0b0b;
+  filter: none;                 /* sin brillo forzado */
+  image-rendering: auto;        /* ideal para arte suavizado */
+  transition: transform .35s ease, filter .25s ease;
 }
 .card-proyecto:hover .card-img {
-  transform: scale(1.04);
+  transform: scale(1.015);      /* hover sutil para no generar blur */
   filter: brightness(1);
 }
+/* ---------------------------------------------------------- */
 
 .card-overlay {
   position: absolute; inset: 0;
@@ -787,5 +798,3 @@ html {
   font-size: .9rem;
   opacity: 0.6;
 }
-
-

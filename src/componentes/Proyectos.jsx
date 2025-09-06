@@ -36,26 +36,25 @@ const proyectos = [
   {
     id: 1,
     titulo: "E-commerce Full Stack",
-    img: "/assets/ecommerce.svg",
-    url: "https://mi-app-react-git-master-mi-app-reacts-projects.vercel.app/",
+    img: "/assets/ecommerce.png",
+    url: "https://tienda-leo.vercel.app/",
     tags: ["React", "Node", "MongoDB"]
   },
   {
     id: 2,
-    titulo: "Proyecto2",
-    img: "/assets/galeria.svg",
-    url: "https://tusitio.com/turismo"
+    titulo: "Clima",
+    img: "/assets/clima.png",
+    url: "https://clima-gilt.vercel.app/",
+    tags: ["React"]
   },
   {
     id: 3,
-    titulo: "Proyecto2",
-    img: "/assets/turismo.svg",
-    url: "https://tusitio.com/blog"
+    titulo: "Galeria de imagen",
+    img: "/assets/galeria.png",
+    url: "https://galeria-frontend.vercel.app/",
+    tags: ["React"]
   },
   {
-    id: 4,
-    titulo: "Proyecto4",
-    img: "/assets/blog.svg",
-    url: "https://tusitio.com/galeria"
+    img: "/assets/proximamente.png",
   }
 ];
